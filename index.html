@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-4">
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="City Name" aria-label="City Name" aria-describedby="button-addon2">
+        <input id="search-location" type="text" class="form-control" placeholder="City Name" aria-label="City Name" aria-describedby="button-addon2">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
         </div>
@@ -36,7 +36,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
 
-
+    const cities = [""];
     //function to store JSON info for each city button created
     function searchCity (cityName){
 
@@ -57,8 +57,24 @@
         for (let i=0; i<cities.length; i++) {
             const cityButton = document.createElement("button");
             cityButton.setAttribute("data-name", cities[i]);
+            cityButton.innerHTML = cities [i];
+            document.getElementById("location-city").append(cityButton);
         }
     }
+
+    //adding function to search button
+    document.getElementById("button-addon2").addEventListener("click", function(event) {
+        event.preventDefault();
+
+        const city = document.getElementById("search-location").value.trim();
+
+        cities.push(city);
+        console.log(cities);
+        renderButtons();
+    });
+
+    renderButtons();
+
     
     </script>
 </body>
