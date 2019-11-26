@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <container><h1>Weather Dashboard</h1></container>
+
+    <container>
+        <div class="row">
+            <div class="col-4">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="City Name" aria-label="City Name" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <div id="city-buttons"></div>
+        </div>
+        <div class="col-6">
+            <div id="location-city"></div>
+        </div>
+    </div>
+    </container>
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+
+    //function to store JSON info for each city button created
+    function searchCity (cityName){
+
+    const queryURL = "api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&APPID=30926d06b2d1bfc9ecebda603b84e43a";
+        axios.get(queryURL).then(function (response) {
+           console.log (queryURL);
+           console.log (response);
+
+           document.getElementById("location-city").innerHTML = JSON.stringify(response);
+        });
+    };
+    
+
+    //function to display weather info
+    function renderButtons() {
+        document.getElementById("city-buttons").innerHTML = "";
+
+        for (let i=0; i<cities.length; i++) {
+            const cityButton = document.createElement("button");
+            cityButton.setAttribute("data-name", cities[i]);
+        }
+    }
+    
+    </script>
+</body>
+</html>
