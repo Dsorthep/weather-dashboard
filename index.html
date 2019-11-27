@@ -24,7 +24,7 @@
 
     <div class="row">
         <div class="col-6">
-            <h2></h2>
+            <h2 id="h2"></h2>
             <div id="city-buttons"></div>
         </div>
         <div class="col-6">
@@ -37,7 +37,12 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
 
-        //adding function to search button
+    //displaying the appropriate weather info
+    //function displayWeatherInfo() {
+        
+   
+
+        
         //this is current weather info
    document.getElementById("button-addon2").addEventListener("click", function(event) {
    event.preventDefault();
@@ -50,8 +55,35 @@
     axios.get(queryURL).then(function(response) {
            console.log (queryURL);
            console.log (response);
+           //const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + APIKey;
+        const cityName = document.createElement("h1")
+        cityName.innerHTML = response.data.name;
 
-           document.getElementById("location-city").innerHTML = JSON.stringify(response);
+        const temp = document.createElement("p")
+        temp.innerHTML = "Temperature: " + response.data.main.temp;
+
+        const humidity = document.createElement("p")
+        humidity.innerHTML = "Humidity: " + response.data.main.humidity;
+
+        const windSpeed = document.createElement("p")
+        windSpeed.innerHTML = "Wind Speed: " + response.data.wind.speed;
+
+        document.getElementById("location-city").innerHTML = "";
+        document.getElementById("location-city").append(cityName, temp, humidity, windSpeed);
+           //document.getElementById("city-buttons").innerHTML = JSON.stringify(response);
+        //const h2 = "<h2>" + response.data.name + " Weather Details</h2>";
+           //transfer content to html
+    //document.querySelector("h2").innerHTML = "<h2>" + response.data.name + " Weather Details</h2>";
+    //document.querySelector("wind-speed").innerHTML = "<p>Wind Speed: " + response.data.wind.speed + "</p>";
+    //document.querySelector("humidity").innerHTML = "<p>Humidity: " + response.data.main.humidity + "</p>";
+    //document.querySelector("temp").innerHTML = "<p>Temperature (F) " + response.data.main.temp + "</p>";
+
+    //logging data in the console as well
+        //console.log("Wind Speed: " + response.data.wind.speed);
+        //console.log("Humidity: " + response.data.main.humidity);
+        //console.log("Temperature (F): " + response.data.main.temp);
+        //const city = this.getAttribute("data-name");
+        //const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + APIKey;
 
     });
    });
@@ -69,10 +101,43 @@
            console.log (queryURL);
            console.log (response);
 
-           document.getElementById("location-city").innerHTML = JSON.stringify(response);
+          
+           //const queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + APIKey;
+           //document.getElementById("location-city").innerHTML = JSON.stringify(response);
+           //transfer content to html
+        //document.querySelector(".city").innerHTML = "<h2>" + response.data.name + " Weather Details</h2>";
+        //document.querySelector(".wind").innerHTML = "Wind Speed: " + response.data.wind.speed;
+        //document.querySelector(".humidity").innerHTML = "Humidity: " + response.data.main.humidity;
+        //document.querySelector(".temp").innerHTML = "Temperature (F) " + response.data.main.temp;
+
+    //logging data in the console as well
+        //console.log("Wind Speed: " + response.data.wind.speed);
+        //console.log("Humidity: " + response.data.main.humidity);
+        //console.log("Temperature (F): " + response.data.main.temp);
+        //const city = this.getAttribute("data-name");
+        //const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + APIKey;
 
     });
    });
+
+   //this is the uv index
+   //document.getElementById("button-addon2").addEventListener("click", function(event) {
+   //event.preventDefault();
+
+   //const APIKey = "&APPID=30926d06b2d1bfc9ecebda603b84e43a"
+   //const city = document.getElementById("search-location").value;
+
+   //const queryURL = "http://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}";
+
+    //axios.get(queryURL).then(function(response) {
+           //console.log (queryURL);
+           //console.log (response);
+           
+           //document.getElementById("location-city").innerHTML = JSON.stringify(response);
+
+        //});
+   //});
+
     
   //function to display weather info
   //function renderButtons() {
@@ -97,16 +162,7 @@
        
             
 
-    //transfer content to html
-      //  document.querySelector(".city").innerHTML = "<h2>" + response.data.name + " Weather Details</h2>";
-      //  document.querySelector(".wind").innerHTML = "Wind Speed: " + response.data.wind.speed;
-      //  document.querySelector(".humidity").innerHTML = "Humidity: " + response.data.main.humidity;
-       // document.querySelector(".temp").innerHTML = "Temperature (F) " + response.data.main.temp;
-
-    //logging data in the console as well
-      //  console.log("Wind Speed: " + response.data.wind.speed);
-     //   console.log("Humidity: " + response.data.main.humidity);
-      //  console.log("Temperature (F): " + response.data.main.temp);
+    
         
        
         
