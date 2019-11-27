@@ -35,58 +35,95 @@
 
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
+    <script type="text/javascript">
 
-    const cities = [""];
-    //function to store JSON info for each city button created
-    function searchCity (cityName){
+        //adding function to search button
+        //this is current weather info
+   document.getElementById("button-addon2").addEventListener("click", function(event) {
+   event.preventDefault();
 
-    const queryURL = "api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&APPID=30926d06b2d1bfc9ecebda603b84e43a";
-        axios.get(queryURL).then(function (response) {
+   const APIKey = "&APPID=30926d06b2d1bfc9ecebda603b84e43a"
+   const city = document.getElementById("search-location").value;
+
+   const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + APIKey;
+
+    axios.get(queryURL).then(function(response) {
            console.log (queryURL);
            console.log (response);
 
            document.getElementById("location-city").innerHTML = JSON.stringify(response);
 
+    });
+   });
+
+        //this is 5day forecast
+        document.getElementById("button-addon2").addEventListener("click", function(event) {
+   event.preventDefault();
+
+   const APIKey = "&APPID=30926d06b2d1bfc9ecebda603b84e43a"
+   const city = document.getElementById("search-location").value;
+
+   const queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + APIKey;
+
+    axios.get(queryURL).then(function(response) {
+           console.log (queryURL);
+           console.log (response);
+
+           document.getElementById("location-city").innerHTML = JSON.stringify(response);
+
+    });
+   });
+    
+  //function to display weather info
+  //function renderButtons() {
+  //      document.getElementById("city-buttons").innerHTML = "";
+
+  //      for (let i=0; i<cities.length; i++) {
+  //          const cityButton = document.createElement("button");
+  //          cityButton.setAttribute("data-name", cities[i]);
+  //          cityButton.innerHTML = cities [i];
+  //       document.getElementById("location-city").append(cityButton);
+  //      }
+  //  }
+
+  //  
+    
+
+   // const cities = [];
+    //function to store JSON info for each city button created
+    //function searchCity (cityName){
+
+   
+       
+            
+
     //transfer content to html
-        document.querySelector(".city").innerHTML = "<h2>" + response.data.name + " Weather Details</h2>";
-        document.querySelector(".wind").innerHTML = "Wind Speed: " + response.data.wind.speed;
-        document.querySelector(".humidity").innerHTML = "Humidity: " + response.data.main.humidity;
-        document.querySelector(".temp").innerHTML = "Temperature (F) " + response.data.main.temp;
+      //  document.querySelector(".city").innerHTML = "<h2>" + response.data.name + " Weather Details</h2>";
+      //  document.querySelector(".wind").innerHTML = "Wind Speed: " + response.data.wind.speed;
+      //  document.querySelector(".humidity").innerHTML = "Humidity: " + response.data.main.humidity;
+       // document.querySelector(".temp").innerHTML = "Temperature (F) " + response.data.main.temp;
 
     //logging data in the console as well
-        console.log("Wind Speed: " + response.data.wind.speed);
-        console.log("Humidity: " + response.data.main.humidity);
-        console.log("Temperature (F): " + response.data.main.temp);
-        });
-    };
+      //  console.log("Wind Speed: " + response.data.wind.speed);
+     //   console.log("Humidity: " + response.data.main.humidity);
+      //  console.log("Temperature (F): " + response.data.main.temp);
+        
+       
+        
+     
+
+
+
+     //   
+
+    //    cities.push(city);
+    //    console.log(cities);
+        
+    //});
+
+    //renderButtons();
+
     
-  
-
-    //function to display weather info
-    function renderButtons() {
-        document.getElementById("city-buttons").innerHTML = "";
-
-        for (let i=0; i<cities.length; i++) {
-            const cityButton = document.createElement("button");
-            cityButton.setAttribute("data-name", cities[i]);
-            cityButton.innerHTML = cities [i];
-            document.getElementById("location-city").append(cityButton);
-        }
-    }
-
-    //adding function to search button
-    document.getElementById("button-addon2").addEventListener("click", function(event) {
-        event.preventDefault();
-
-        const city = document.getElementById("search-location").value.trim();
-
-        cities.push(city);
-        console.log(cities);
-        renderButtons();
-    });
-
-    renderButtons();
 
     
     </script>
